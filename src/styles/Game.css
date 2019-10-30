@@ -1,0 +1,11 @@
+.GameBoard {
+  margin: auto;
+  border: 3px solid green;
+  padding: 10px;
+  display: inline-block;
+}
+
+.GameRow {
+	padding: 0px;
+	height: 42px;
+}
