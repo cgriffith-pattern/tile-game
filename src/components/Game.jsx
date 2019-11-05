@@ -106,8 +106,10 @@ export default class Game extends React.Component {
     return false;
   }
 
+  /*Brute force method of implementing reset, nextPuzzle, and restartPuzzle. Directly mutates state.*/
   reset() {
-    this.setState({ solved: false, moves: 0});
+    this.state.solved = false;
+    this.state.moves = 0;
     let array = this.shuffle(this.genTile(this.state.width));
     while (this.solvable(array) === false || this.ordered(array) === true){
       this.shuffle(array);
@@ -119,7 +121,7 @@ export default class Game extends React.Component {
 
   nextPuzzle(){
     if (this.state.solved){
-      this.setState({width: (this.state.width + 1)});
+      this.state.width = this.state.width + 1;
       this.reset();
       return this.state.width;
     }
@@ -127,7 +129,8 @@ export default class Game extends React.Component {
   }
 
   restartPuzzle(){
-    this.setState({width: 3, completed: 0});
+    this.state.width = 3;
+    this.state.completed = 0;
     this.reset();
   }
 
