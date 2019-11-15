@@ -11,7 +11,7 @@ export default class Tile extends React.Component {
 
 	render() {
 		return (
-			<div className="Tile" onClick={this.handleClick}>
+			<div className="Tile" onClick={this.handleClick}  label={this.props.label}>
 				<div className="TileLabel">{this.props.label}</div>
 			</div>
 		);

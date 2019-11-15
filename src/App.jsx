@@ -1,23 +1,16 @@
 import React from 'react';
-import logo from './images/logo.svg';
 import './styles/App.css';
+import Game from './components/Game';
 
 function App() {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer">
-					General Kenobi
-				</a>
-			</header>
+		<div className="container">
+		<div className="game">
+			<h1>Solve the Puzzle!</h1>
+			<Game/>
+			<h3>This is a tile puzzle game. The goal of the game is to place all the tiles into numerical order by sliding each tile only using the empty space.</h3>
+		</div>
+		<div className="bottom">&copy; 2019 Cameron Griffith. All Rights Reserved.</div>
 		</div>
 	);
 }

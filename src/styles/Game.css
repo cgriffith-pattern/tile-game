@@ -1,11 +1,54 @@
+.Game {
+	font-family: 'Papyrus';
+	padding: 10px;
+	border: 3px solid #000000;
+	background-color: #FFFFFF;
+	color: #000000;
+	display: inline-block;
+	width: 50vmax;
+}
+
 .GameBoard {
 	margin: auto;
-	border: 3px solid green;
-	padding: 10px;
+	border: 3px solid #000000;
+	padding: 30px;
 	display: inline-block;
+	background-color: #FFFFFF;
+	height: 33vmax;
+	width: 33vmax;
 }
 
 .GameRow {
 	padding: 0px;
-	height: 42px;
+	height: 10vmax;
+}
+
+.GameInterface {
+	margin-top: 10px;
+	width: 400px;
+}
+
+.GameInterface button{
+	margin: 10px;
+	padding: 5px;
+	display: inline-block;
+	background-color: #D3D3D3;
+	border: none;
+	cursor: pointer;
+}
+
+.GameInterface button:hover,
+.GameInterface button:focus{
+	background-color: #8B0000;
+}
+
+button img {
+	max-height: 40px;
+	max-width: 40px;
+}
+
+.GameStats {
+	font-size: 20px;
+	position: relative;
+	text-align: center;
 }

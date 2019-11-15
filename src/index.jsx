@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
-import Game from './components/Game';
+import App from './App';
+//import '@fortawesome/fontawesome-free/css/all.min.css';
 
-ReactDOM.render(<Game />, document.getElementById('root'));
+
+ReactDOM.render(<App />, document.getElementById('root'));

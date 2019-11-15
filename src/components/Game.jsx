@@ -1,6 +1,9 @@
 import React from 'react';
 import Tile from './Tile';
 import '../styles/Game.css';
+import next from '../images/next.png';
+import shuffle from '../images/shuffle.png';
+import reset from '../images/reset.png';
 
 export default class Game extends React.Component {
 	constructor(props) {
@@ -225,37 +228,31 @@ export default class Game extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<h1>Solve the Puzzle!</h1>
-				<div align="center">
+			<div className="Game" align="center">
+				<div className="GameStats">
 					<h2>Completed: {this.state.completed}</h2>
 					<h2>Moves: {this.state.moves}</h2>
-					<div className="GameBoard">{this.renderCols('0')}</div>
-					<div>
-						<button
-							onClick={() => {
-								this.nextPuzzle();
-							}}>
-							{' '}
-							next puzzle{' '}
-						</button>
-					</div>
-					<div>
-						<button
-							onClick={() => {
-								this.reset();
-							}}>
-							reshuffle
-						</button>
-					</div>
-					<div>
-						<button
-							onClick={() => {
-								this.restartPuzzle();
-							}}>
-							restart
-						</button>
-					</div>
+				</div>
+				<div className="GameBoard">{this.renderCols('0')}</div>
+				<div className="GameInterface">
+					<button style={{float: "left"}}
+						onClick={() => {
+							this.restartPuzzle();
+						}}>
+						<img src={reset} />
+					</button>
+					<button
+						onClick={() => {
+							this.reset();
+						}}>
+						<img src={shuffle} />
+					</button>
+					<button style={{float: "right"}}
+						onClick={() => {
+							this.nextPuzzle();
+						}}>
+						<img src={next} />
+					</button>
 				</div>
 			</div>
 		);

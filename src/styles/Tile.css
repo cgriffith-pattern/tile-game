@@ -1,9 +1,26 @@
 .Tile {
 	display: inline-block;
 	position: relative;
-	height: 40px;
-	width: 40px;
-	border: solid #5b6dcd 1px;
+	height: 10vmax;
+	width: 10vmax;
+	border: solid #8B0000 10px;
+	background-color: #FFFFFF;
+	color: #000000;
+	float:left;
+	margin: 0px -10px -10px auto;
+	cursor: pointer;
+}
+
+.Tile:not([label=""]):hover,
+.Tile:not([label=""]):focus {
+	background-color: #8B0000;
+	border: solid green 10px;
+	color: #FFFFFF;
+	z-index: 1;
+}
+
+.Tile[label=""]{
+	background-color: #D3D3D3;
 }
 
 .TileLabel {
@@ -11,4 +28,6 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	font-size: 300%;
+	font-family: 'Papyrus';
 }
