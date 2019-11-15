@@ -1,8 +1,8 @@
 .GameBoard {
-  margin: auto;
-  border: 3px solid green;
-  padding: 10px;
-  display: inline-block;
+	margin: auto;
+	border: 3px solid green;
+	padding: 10px;
+	display: inline-block;
 }
 
 .GameRow {

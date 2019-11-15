@@ -1,0 +1,8 @@
+/graphql_integration_tests/node_modules/*
+/node_modules/*
+*.config
+*.svg
+*.snap
+*.html
+*.json
+*.d.ts

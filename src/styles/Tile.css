@@ -1,14 +1,14 @@
 .Tile {
-  display: inline-block;
-  position: relative;	
-  height: 40px;
-  width: 40px;
-  border: solid #5B6DCD 1px;
+	display: inline-block;
+	position: relative;
+	height: 40px;
+	width: 40px;
+	border: solid #5b6dcd 1px;
 }
 
 .TileLabel {
-  position: absolute;	
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%)
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
