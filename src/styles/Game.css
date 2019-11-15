@@ -2,7 +2,7 @@
 	font-family: 'Papyrus';
 	padding: 10px;
 	border: 3px solid #000000;
-	background-color: #FFFFFF;
+	background-color: rgba(255, 255, 255, 0.9);
 	color: #000000;
 	display: inline-block;
 	width: 50vmax;
@@ -14,13 +14,11 @@
 	padding: 30px;
 	display: inline-block;
 	background-color: #FFFFFF;
-	height: 33vmax;
-	width: 33vmax;
 }
 
 .GameRow {
 	padding: 0px;
-	height: 10vmax;
+	height: 6vmax;
 }
 
 .GameInterface {
