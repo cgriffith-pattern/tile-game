@@ -3,7 +3,8 @@ services:
   - docker
 
 before_install:
-  - docker build -t cgriffith4243/docker-react -f Dockerfile.dev .
+  - docker build -t cgriffith-4243/tile-game -f Dockerfile.dev .
+
 
 script:
-  - docker run -e CI=true cgriffith4243/tile-game npm run test -- --coverage
+  - docker run -e CI=true cgriffith-4243/tile-game npm run test -- --coverage
