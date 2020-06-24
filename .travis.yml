@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true cgriffith-4243/tile-game npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-1"
+  app: "tile-game"
+  env: "TileGame-env"
+  bucket_name: "elasticbeanstalk-us-west-1-278733599482"
+  bucket_path: "tile-game"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
