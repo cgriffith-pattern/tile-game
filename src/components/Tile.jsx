@@ -19,5 +19,5 @@ export default class Tile extends React.Component {
 }
 
 Tile.propTypes = {
-	label: PropTypes.string.isRequired,
+	label: PropTypes.string,
 };

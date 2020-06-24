@@ -1,47 +1,48 @@
 import React from 'react';
 import Tile from './Tile';
 import '../styles/Game.css';
-import next from '../images/next.png';
-import shuffle from '../images/shuffle.png';
-import reset from '../images/reset.png';
+import nextIcon from '../images/next.png';
+import shuffleIcon from '../images/shuffle.png';
+import resetIcon from '../images/reset.png';
 
 export default class Game extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			date: new Date(),
-			width: 3, //dimension of one side
-			tiles: {},
+			width: 0, //dimension of one side
+			tiles: {}, //An object which holds keys and value pairs for each tile. Since this will be treated as an array, it will be referred to as the tile array
 			solved: false, //puzzle is solved value
 			moves: 0, //valid clicks player makes
 			completed: 0, //number of puzzles completed
 		};
 	}
 
+	//populates and shuffles the tile object when the component is first mounted
 	componentDidMount() {
-		this.reset();
+		this.restartPuzzle();
 	}
 
-	genTile(w) {
+	//creates an ordered object of numbers to populate the tiles
+	genTile(width) {
+		let i;
 		let array = {};
-		var i;
 
 		//generates ordered hash, where key :: value
-		for (i = 0; i < w * w - 1; i++) {
+		for (i = 0; i < width * width - 1; i++) { //initializes tile numbers 1 to last-1. e.g. 1-8 for a 9 tile puzzle
 			Object.assign(array, { [i.toString()]: (i + 1).toString() }); //s.t. value = key+1
 		}
 
-		//blank tile will always be last
+		//the last tile will always be blank at the start of the puzzle
 		Object.assign(array, { [i.toString()]: '' });
 
 		return array;
 	}
 
+	//takes the object array of tiles and then reshuffles it
 	shuffle(array) {
-		var ran,
-			temp,
-			curr = this.state.width * this.state.width - 1;
-		//cycles through individual elements in array
+		let ran, temp;
+		let curr = Object.keys(array).length - 1; //starts with the last non-empty tile space
+		//cycles through individual elements in the array
 		while (curr !== 0) {
 			//gets random index
 			ran = Math.floor(Math.random() * curr--);
@@ -55,13 +56,10 @@ export default class Game extends React.Component {
 		return array;
 	}
 
-	ordered(array) {
-		if (this.state.solved) {
-			return true;
-		}
 
-		var i,
-			length = this.state.width * this.state.width - 1;
+	ordered(array) {
+		let i;
+		let length = Object.keys(array).length - 1;
 
 		for (i = 0; i < length; i++) {
 			//if value is not ordered, invalid
@@ -69,16 +67,19 @@ export default class Game extends React.Component {
 				return false;
 			}
 		}
-		this.setState({ completed: this.state.completed + 1 }); //increment completed puzzles counter
+
 		return true;
 	}
 
-	solvable(array) {
-		var width = this.state.width;
-		var inversions = 0,
-			i,
-			j; //inversion counter, indexes
-		var blankPos = width * width - 1; //stores blank position
+	solvable(array, width = this.state.width) {
+	  //checks solvability for the current width
+		if (width < 3){
+			return false;
+		}
+		//inversion counter, indexes
+		let i, j;
+		let inversions = 0;
+		let blankPos = width * width - 1; //stores blank position
 
 		for (i = 0; i < width * width - 1; i++) {
 			for (j = i + 1; j < width * width; j++) {
@@ -122,32 +123,30 @@ export default class Game extends React.Component {
 		return false;
 	}
 
-	/*Brute force method of implementing reset, nextPuzzle, and restartPuzzle. Directly mutates state.*/
-	reset() {
-		this.state.solved = false;
-		this.state.moves = 0;
-		let array = this.shuffle(this.genTile(this.state.width));
-		while (this.solvable(array) === false || this.ordered(array) === true) {
-			this.shuffle(array);
+	reset(width = this.state.width) {
+		let array = this.shuffle(this.genTile(width));
+		while (this.solvable(array, width) === false || this.ordered(array) === true) {
+			array = this.shuffle(array);
 		}
-		this.setState({ tiles: array });
+		this.setState({
+			width: width,
+			moves: 0,
+			solved: false,
+			tiles: array
+		});
 
-		return this.state.tiles;
+		return array;
 	}
 
 	nextPuzzle() {
 		if (this.state.solved) {
-			this.state.width = this.state.width + 1;
-			this.reset();
-			return this.state.width;
+			this.reset(this.state.width + 1);
 		}
-		return this.state.width;
 	}
 
 	restartPuzzle() {
-		this.state.width = 3;
-		this.state.completed = 0;
-		this.reset();
+		this.reset(3);
+		this.setState({completed: 0});
 	}
 
 	getKeyByValue(tileNumber) {
@@ -169,10 +168,10 @@ export default class Game extends React.Component {
 
 		const blank_key = this.getKeyByValue('');
 		const tile_key = this.getKeyByValue(tileNumber);
-		var bk_num = parseInt(blank_key);
-		var tk_num = parseInt(tile_key);
-		var width = this.state.width;
-		var tiles = this.state.tiles;
+		let bk_num = parseInt(blank_key);
+		let tk_num = parseInt(tile_key);
+		let width = this.state.width;
+		let tiles = this.state.tiles;
 		if (
 			Math.abs(bk_num - tk_num) === 1 ||
 			Math.abs(bk_num - tk_num) === width
@@ -185,9 +184,16 @@ export default class Game extends React.Component {
 				tiles[blank_key] = tileNumber;
 				tiles[tile_key] = '';
 				//update state
+				let solved = this.ordered(this.state.tiles);
+				let completed = this.state.completed;
+				if (solved){
+					completed += 1;
+				}
+
 				this.setState({
-					solved: this.ordered(this.state.tiles),
 					moves: this.state.moves + 1,
+					completed: completed,
+					solved: solved,
 					tiles: tiles,
 				});
 			}
@@ -196,14 +202,14 @@ export default class Game extends React.Component {
 
 	renderTile(tileNumber) {
 		return (
-			<Tile label={this.state.tiles[tileNumber]} onClick={this.handleClick} />
+			<Tile label={this.state.tiles[tileNumber]} onClick={this.handleClick} key={tileNumber}/>
 		);
 	}
 
 	renderRows(tileNumber) {
-		var width = this.state.width;
+		let width = this.state.width;
 		let row = [];
-		var i;
+		let i;
 		for (i = 0; i < width; i++) {
 			row.push(this.renderTile(tileNumber++));
 		}
@@ -212,13 +218,15 @@ export default class Game extends React.Component {
 	}
 
 	renderCols(tileNumber) {
-		var height = this.state.width;
+		let height = this.state.width;
 		let cols = [];
-		var i;
-		var tNum = parseInt(tileNumber);
+		let i;
+		let tNum = parseInt(tileNumber);
 		for (i = 0; i < height; i++) {
 			cols.push(
-				<div className="GameRow"> {this.renderRows(tNum.toString())} </div>,
+				<div className="GameRow" key={(tNum * -1).toString()}>
+					{this.renderRows(tNum.toString())}
+				</div>,
 			);
 			tNum += height;
 		}
@@ -239,19 +247,19 @@ export default class Game extends React.Component {
 						onClick={() => {
 							this.restartPuzzle();
 						}}>
-						<img src={reset} />
+						<img src={resetIcon} alt="Restart"/>
 					</button>
 					<button
 						onClick={() => {
 							this.reset();
 						}}>
-						<img src={shuffle} />
+						<img src={shuffleIcon} alt="Shuffle"/>
 					</button>
 					<button style={{float: "right"}}
 						onClick={() => {
 							this.nextPuzzle();
 						}}>
-						<img src={next} />
+						<img src={nextIcon} alt="Next"/>
 					</button>
 				</div>
 			</div>
