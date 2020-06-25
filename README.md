@@ -1,68 +1,30 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Eight Tile Game
 
-## Available Scripts
+#### Description:
 
-In the project directory, you can run:
+A web application based on sliding tile games, built using JavaScript, React, and CSS. Utilizes Jest and Enzyme for unit testing.
 
-### `yarn start`
+Implementation of automatic deployment to AWS Elastic Beanstalk. Travis CI used for continuous integration.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### How to Play:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Simply click on the tiles to move them around. Only tiles adjacent to the blank space may move. A tile will be considered complete when all the numbers are in order, left to right, up and down, with the blank space at the bottom left corner.
 
-### `yarn test`
+Three buttons are available at the bottom: restart, reshuffle, next.
+	- Restart: Wanna start over? Completely restart from the smallest size puzzle and bring the completed puzzle count back to zero.
+	- Reshuffle: Having trouble or completed the current puzzle? Reshuffle for a new one and keep going!
+	- Next: Completed the puzzle but want a little more challenge? Increase the size of the puzzle and increase the difficulty!
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Project Status:
 
-### `yarn build`
+This project is complete. Additional minor tweaks to CSS and JavaScript may be added in the future. A demo link will be available on GitHub if currently live.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Reflection
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+This was a personal project created when I was learning React. The project goals were teach myself new skills, creating the project using Docker, writing tests for development, setting up continuous integration, and implementing automatic deployment to a web service.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I started by using `create-react-app` as the base, then switching from JS to JSX. I had already written some of the JavaScript and CSS for a tile game, converting it for this version of the project. I performed testing using Jest and Enzyme to ensure the components and functions worked as intended.
 
-### `yarn eject`
+Overall, this project was a good exercise to help me learn new technologies.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The technologies used in this project are Docker, React, Jest, Enzyme, Travis CI, AWS Elastic Beanstalk, as well as JSX and CSS.
