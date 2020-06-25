@@ -11,9 +11,9 @@ Implementation of automatic deployment to AWS Elastic Beanstalk. Travis CI used 
 Simply click on the tiles to move them around. Only tiles adjacent to the blank space may move. A tile will be considered complete when all the numbers are in order, left to right, up and down, with the blank space at the bottom left corner.
 
 Three buttons are available at the bottom: restart, reshuffle, next.
-	- Restart: Wanna start over? Completely restart from the smallest size puzzle and bring the completed puzzle count back to zero.
-	- Reshuffle: Having trouble or completed the current puzzle? Reshuffle for a new one and keep going!
-	- Next: Completed the puzzle but want a little more challenge? Increase the size of the puzzle and increase the difficulty!
+	<br />- Restart: Wanna start over? Completely restart from the smallest size puzzle and bring the completed puzzle count back to zero.
+	<br />- Reshuffle: Having trouble or completed the current puzzle? Reshuffle for a new one and keep going!
+	<br />- Next: Completed the puzzle but want a little more challenge? Increase the size of the puzzle and increase the difficulty!
 
 #### Project Status:
 
