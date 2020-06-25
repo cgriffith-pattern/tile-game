@@ -15,13 +15,14 @@ describe('app', () => {
 	});
 });
 
+//This group of tests check if the functions related to initial game setup work as intended
 describe('Game setup', () => {
 	let wrapper;
 	beforeEach(() => {
 		wrapper = setup();
 	});
 
-	test('tiles dynamically generate', () => {
+	test('tiles dynamically generate', () => { //checks if the genTile function works as intended
 		wrapper.instance().setState({ width: 4 });
 		const sixteens = {
 			'0': '1',
@@ -43,7 +44,7 @@ describe('Game setup', () => {
 		};
 		expect(wrapper.instance().genTile(4)).toEqual(sixteens);
 	});
-	test('tiles are ordered', () => {
+	test('tiles are ordered', () => { //checks if the ordered function works as intended
 		wrapper.instance().setState({ width: 3 });
 		const randomNines = {
 			'0': '3',
@@ -70,7 +71,7 @@ describe('Game setup', () => {
 		expect(wrapper.instance().ordered(randomNines)).toBe(false);
 		expect(wrapper.instance().ordered(orderNines)).toBe(true);
 	});
-	test('tiles are shuffled', () => {
+	test('tiles are shuffled', () => { //checks if the shuffle function works as intended
 		wrapper.instance().setState({ width: 3 });
 		const orderNines = {
 			'0': '1',
@@ -98,6 +99,7 @@ describe('Game setup', () => {
 	});
 });
 
+//This group of tests check if the solvable function works as intended
 describe('Game solvability tests', () => {
 	let wrapper;
 	beforeEach(() => {
